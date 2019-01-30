@@ -1,0 +1,50 @@
+@font-face{
+  font-family: "DIN";
+  src: url(../fonts/DIN-Medium.ttf);
+}
+
+// html, body {
+//   height: 100%;
+//   overflow: hidden;
+// }
+
+body {
+  // background: @appBackground;
+  color: @appHeaderFont;
+  font-size: .13rem;
+  font-family: "DIN", "PingFang SC", "Roboto", "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity @animationTransitionDuration;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+@keyframes roll {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rolling {
+  animation: roll linear 1s infinite;
+}
+
+.icon-loading.center-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: .24rem !important;
+  height: .24rem !important;
+  margin: -.12rem;
+  z-index: 9;
+}
+
+.lx-toast {
+  z-index: 99999999999999;
+}

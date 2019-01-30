@@ -1,0 +1,95 @@
+.demo-page {
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.row {
+  margin-bottom: .15rem;
+}
+.banner {
+  img {
+    width: 100%;
+  }
+
+  .VueCarousel-pagination {
+    position: absolute;
+    bottom: 0;
+    text-align: right !important;
+    padding: .08rem .1rem;
+    box-sizing: border-box;
+  }
+
+  .VueCarousel-dot-button {
+    border-radius: 0 !important;
+    margin: 0 4px;
+  }
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  li {
+    width: 22%;
+    line-height: .3rem;
+    text-align: center;
+    margin: 5px;
+    border: 1px solid rgba(255, 0, 0, .0);
+    transition: all @animationTransitionDuration;
+
+    &.active {
+      color: rgba(255, 0, 0, .8);
+      background: #fcc;
+      border: 1px solid rgba(255, 0, 0, .5);
+    }
+  }
+}
+
+.toasts {
+  display: flex;
+  flex-wrap: wrap;
+
+  button {
+    width: 47%;
+    line-height: .3rem;
+    text-align: center;
+    margin: 5px;
+    color: rgba(0, 0, 255, .8);
+    background: #ccf;
+    border: 1px solid rgba(0, 0, 255, .5);
+  }
+}
+
+.icons {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  li {
+    padding: .06rem;
+  }
+}
+
+.basketball-icon-container svg {
+  width: .16rem;
+  height: .16rem;
+}
+
+.volleyball-icon {
+  width: .16rem;
+  height: .16rem;
+}
+
+.btn-more {
+  display: flex;
+  align-items: center;
+  height: .44rem;
+  line-height: .44rem;
+  padding: 0 .15rem;
+}
+
+.bet-game-option {
+  height: .5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center; 
+}

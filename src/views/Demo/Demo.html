@@ -1,0 +1,259 @@
+<div class="demo-page">
+  <div class="row">
+    <select v-model="locale">
+      <option
+        v-for="(l, i) in languages"
+        :key="i"
+        :value="l.key"
+      >{{l.text}}</option>
+    </select>
+    <div>{{$t('msg1')}}</div>
+    <div>{{msg2}}</div>
+    <div>{{msg3}}</div>
+  </div>
+  <div class="row">
+    <div>网页中的cdn图片用 Cimg 组件显示</div>
+    <carousel
+      class="banner"
+      :per-page="1"
+      :mouse-drag="false"
+      :paginationPadding="0"
+      :paginationSize="8"
+      paginationColor="rgba(215, 215, 215, .2)"
+      paginationActiveColor="#eecda2"
+    >
+      <slide
+        v-for="(b, i) in banners"
+        :key="i"
+      >
+        <v-touch v-on:tap="doAction(b.action)">
+          <cimg :src="b.source" />
+        </v-touch>
+      </slide>
+    </carousel>
+  </div>
+  <div class="row">
+    <span>已选<b style="color: red;">{{bettings.length}}</b>注</span>
+    <ul class="options">
+      <v-touch
+        tag="li"
+        v-on:tap="betting(o)"
+        v-for="(o, i) in options"
+        :key="i"
+        :class="{active: isChecked(o)}"
+      >{{o.text}}</v-touch>
+    </ul>
+  </div>
+  <div>vue-touch & toast</div>
+  <div class="row toasts">
+    <v-touch tag="button" v-on:tap="toastMessage">toast default message</v-touch>
+    <v-touch tag="button" v-on:tap="toastTopMessage">toast top message</v-touch>
+    <v-touch tag="button" v-on:tap="toastCenterMessage">toast center message</v-touch>
+    <v-touch tag="button" v-on:tap="toastBottomMessage">toast bottom message</v-touch>
+    <v-touch tag="button" v-on:tap="toastLoading">toast loading</v-touch>
+  </div>
+  <div>
+    <div>
+      展开收起动画
+      <v-touch
+        tag="button"
+        v-on:tap="expanded = !expanded"
+      >{{expanded ? '收起' : '展开'}}</v-touch>
+    </div>
+    <expand-transition :expanded="expanded">
+      <div class="expand-area">
+        <div>
+          aaaaaaaaaaaaaaaaaaaaaaaaa <br />
+          bbbbbbbbbbbbbbbbbbbbbbbbb
+        </div>
+      </div>
+    </expand-transition>
+  </div>
+  <div class="row icons">
+    <div>图标</div>
+    <ul>
+      <li><icon-tab-rolling color="#02FFFF" /></li>
+      <li><icon-tab-home /></li>
+      <li><icon-tab-today /></li>
+      <li><icon-tab-early /></li>
+      <li><icon-tab-order /></li>
+    </ul>
+    <ul>
+      <li><icon-setting /></li>
+      <li><icon-search /></li>
+      <li><icon-deposit /></li>
+      <li><icon-history /></li>
+    </ul>
+    <ul>
+      <li><icon-betfall /></li>
+      <li><icon-betrise /></li>
+      <li><icon-betpause /></li>
+      <li><icon-close-circle /></li>
+    </ul>
+    <ul>
+      <li><icon-order-waiting /></li>
+      <li><icon-order-success /></li>
+      <li><icon-order-notice /></li>
+      <li><icon-order-complete /></li>
+    </ul>
+    <ul>
+      <!-- <li><icon-football /></li>
+      <li><icon-basketball /></li>
+      <li><icon-volleyball /></li>
+      <li><icon-tennis /></li>
+      <li><icon-iceball /></li>
+      <li><icon-handball /></li>
+      <li><icon-golf /></li>
+      <li><icon-billiard /></li>
+      <li><icon-badminton /></li>
+      <li><icon-black8 /></li> -->
+      <li><icon-sport sno="10" /></li>
+      <li><icon-sport sno="11" /></li>
+      <li><icon-sport sno="12" /></li>
+      <li><icon-sport sno="14" /></li>
+      <li><icon-sport sno="15" /></li>
+      <li><icon-sport sno="16" /></li>
+      <li><icon-sport sno="17" /></li>
+      <li><icon-sport sno="18" /></li>
+    </ul>
+    <ul>
+      <li><icon-football width=".16rem" height=".16rem" /></li>
+      <li class="basketball-icon-container"><icon-basketball /></li>
+      <li><icon-volleyball class="volleyball-icon" /></li>
+    </ul>
+    <ul>
+      <li><icon-arrow /></li>
+      <li><icon-arrow direction="right" color="#f77" /></li>
+      <li><icon-arrow direction="up" color="blue" /></li>
+      <li><icon-arrow direction="down" /></li>
+      <li><icon-more /></li>
+      <li><icon-more color="#77f" /></li>
+      <li><icon-refresh /></li>
+      <li><icon-play-xs /></li>
+      <li><icon-key-backspace /></li>
+      <li><icon-key-collapse /></li>
+      <li><icon-close /></li>
+      <li><icon-waiting /></li>
+      <li><icon-success /></li>
+      <li><icon-all /></li>
+    </ul>
+  </div>
+  <div>
+    <div>tab bar</div>
+    <tab-bar />
+  </div>
+  <div>
+    <div>nav bar</div>
+    <nav-bar title="aaa">
+      <a class="btn-more"><icon-more /></a>
+    </nav-bar>
+    <nav-bar title="aaa"/>
+    <nav-bar title="aaa" :backable="false" />
+  </div>
+  <input-field label="语言">
+    <span @click="showLan">{{lanData.default}}</span>
+    <Picker :data.sync="lanData" @select="selLan" />
+  </input-field>
+  <input-field label="投注本金设置">
+    <span @click="showBetAmount">{{betAmount}}</span>
+    <SetKeyboard :data.sync="betAmountData" @submit="subBetAmount"/>
+  </input-field>
+  <input-field label="高水位">
+    <span @click="showMax">{{maxOdds}}</span>
+    <SetKeyboard :data.sync="maxOddsData" @submit="subMax"/>
+  </input-field>
+  <input-field label="低水位">
+    <span @click="showMin">{{minOdds}}</span>
+    <SetKeyboard :data.sync="minOddsData" @submit="subMin"/>
+  </input-field>
+  <div class="bet-game-option">
+    <game-option :game="{
+      sportID: 10,
+      gameType: 1,
+      groupType: 1,
+      betBar: '3',
+      betStage: 1,
+    }" :match="{
+      matchID: 1233455,
+      tournamentName: '英格兰XX联赛0',
+      competitor1Name: 'AC米兰0',
+      competitor2Name: '马德里竞技0',
+    }" :option="{
+      optionID: 5453646,
+      odds: 1.65,
+      betBar: '3',
+      betOption: 'X',
+    }" />
+    <game-option :game="{
+      sportID: 10,
+      gameType: 1,
+      groupType: 2,
+      betBar: '4',
+      betStage: 1,
+    }" :match="{
+      matchID: 1233456,
+      tournamentName: '英格兰YY联赛1',
+      competitor1Name: 'AC米兰1',
+      competitor2Name: '马德里竞技1',
+    }" :option="{
+      optionID: 5453647,
+      odds: 2.43,
+      betBar: '5',
+      betOption: '1',
+    }" />
+    <game-option :game="{
+      sportID: 10,
+      gameType: 16,
+      groupType: 2,
+      betBar: '3',
+      betStage: 1,
+    }" :match="{
+      matchID: 1233458,
+      tournamentName: '英格兰XX联赛2',
+      competitor1Name: 'AC米兰2',
+      competitor2Name: '马德里竞技2',
+    }" :option="{
+      optionID: 5453648,
+      odds: 1.22,
+      betBar: '1',
+      betOption: '2',
+    }" />
+    <game-option :game="{
+      sportID: 10,
+      gameType: 1,
+      groupType: 3,
+      betBar: '4',
+      betStage: 1,
+    }" :match="{
+      matchID: 1233459,
+      tournamentName: '英格兰ZZ联赛3',
+      competitor1Name: 'AC米兰3',
+      competitor2Name: '马德里竞技3',
+    }" :option="{
+      optionID: 5453649,
+      odds: 4.44,
+      betBar: '2',
+      betOption: 'X',
+    }" />
+    <game-option :game="{
+      sportID: 10,
+      gameType: 1,
+      groupType: 1,
+      betBar: '3',
+      betStage: 1,
+    }" :match="{
+      matchID: 1233455,
+      tournamentName: '英格兰XX联赛',
+      competitor1Name: 'AC米兰',
+      competitor2Name: '马德里竞技',
+    }" :option="{
+      optionID: 5453646,
+      odds: 1.65,
+      betBar: '3',
+      betOption: 'X',
+    }" />
+  </div>
+  <betting-count-bar />
+  <div style="margin-top:6rem"></div>
+</div>
+<be

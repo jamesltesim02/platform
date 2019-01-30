@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="full-screen" content="yes"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="google" value="notranslate"/>
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>劲彩</title>
+    <script>
+      // REM设置
+      (function () {
+        var de = document.documentElement;
+        function setRootFontSize () {
+          de.style.fontSize = 100 * (de.clientWidth / 375) + 'px';
+        };
+        window.addEventListener('resize', setRootFontSize);
+        document.addEventListener('DOMContentLoaded', setRootFontSize);
+        setRootFontSize();
+      })();
+    </script>
+    <style>
+      html, body{
+        height: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: #2E2F34;
+      }
+
+      .nav-bar {
+        position: relative;
+        background: #28272d;
+        -webkit-box-shadow: 0 0 10px 0 rgba(18,18,18,.5);
+        box-shadow: 0 0 10px 0 rgba(18,18,18,.5);
+        color: #fff;
+        height: .44rem;
+      }
+
+      .footer-bar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #202126;
+        height: 0.52rem;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but 劲彩 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app">
+      <nav class="nav-bar"></nav>
+      <section></section>
+      <footer class="footer-bar"></footer>
+    </div>
+    <script src="system.config.js"></script>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
